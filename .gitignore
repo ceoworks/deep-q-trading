@@ -35,4 +35,7 @@ telegramSettings.py
 *.tar
 *.zip
 
+.DS_Store
+q.weights
+
 

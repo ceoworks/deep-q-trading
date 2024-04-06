@@ -13,6 +13,7 @@ outputFile=str(sys.argv[1])+".pdf"
 numEpochs=100
 pdf=PdfPages(outputFile)
 numFiles=int(sys.argv[2])
+xticksStep=5
 plt.figure(figsize=((numEpochs/10)*(numFiles+1),numPlots*5)) 
 for i in range(1,numFiles+1):
     document = pd.read_csv("./Output/csv/walks/walks"+str(i)+".csv")
@@ -32,7 +33,7 @@ for i in range(1,numFiles+1):
     #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'testCoverage'].tolist(),'r',label='Test')
     plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainCoverage'].tolist(),'b',label='Train')
     plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationCoverage'].tolist(),'g',label='Validation')
-    plt.xticks(range(0,numEpochs,4))
+    plt.xticks(range(0,numEpochs,xticksStep))
     plt.yticks(np.arange(0, 1, step=0.1))
     plt.ylim(-0.05,1.05)
     plt.axhline(y=0, color='k', linestyle='-')
@@ -47,7 +48,7 @@ for i in range(1,numFiles+1):
     #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationReward'].tolist(),'g',label='Validation')
     #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'testReward'].tolist(),'r',label='Test')
     
-    plt.xticks(range(0,numEpochs,4))
+    plt.xticks(range(0,numEpochs,5))
     plt.axhline(y=0, color='k', linestyle='-')
     plt.legend()
     plt.grid()
@@ -181,7 +182,7 @@ for i in range(1,numFiles+1):
     plt.title('Short Precision')
 
 
-plt.suptitle("Esperimento SP500 5 (Only long):\n"
+plt.suptitle("Esperimento DAX Day (Only long):\n"
             +"Target model update: 1e-1\n"
             +"Model: 35 neurons single layer\n"
             +"Memory-Window Length: 10000-1\n"

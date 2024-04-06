@@ -33,7 +33,6 @@ import datetime
 MK="dax"
 
 class DeepQTrading:
-    
     #Class constructor
     #model: Keras model considered
     #Explorations is a vector containing (i) probability of random predictions; (ii) how many epochs will be 
@@ -125,6 +124,10 @@ class DeepQTrading:
         #While we did not pass through all the dates (i.e., while all the walks were not finished)
         #walk size is train+validation+test size
         #currentStarting point begins with begin date
+        print("HERE:")
+        print(self.currentStartingPoint+self.walkSize)
+        print(self.walkSize)
+        print(self.endingPoint)
         while(self.currentStartingPoint+self.walkSize <= self.endingPoint):
 
             #Iteration is the current walk

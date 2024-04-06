@@ -85,8 +85,8 @@ dqt = DeepQTrading(
     validationSize=datetime.timedelta(days=30*6),
     testSize=datetime.timedelta(days=30*6),
     outputFile="./Output/csv/walks/walks",
-    begin=datetime.datetime(2001,1,1,0,0,0,0),
-    end=datetime.datetime(2019,2,28,0,0,0,0),
+    begin=datetime.datetime(2000,3,1,0,0,0,0),
+    end=datetime.datetime(2019,3,7,0,0,0,0),
     nbActions=nb_actions,
     isOnlyShort=isOnlyShort,
     ensembleFolderName=sys.argv[3]
