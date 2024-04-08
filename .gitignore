@@ -19,7 +19,6 @@ telegramSettings.py
 
 # Documents #
 #############
-*.pdf
 *.xlsx
 
 # Packages #
