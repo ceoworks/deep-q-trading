@@ -36,5 +36,5 @@ telegramSettings.py
 
 .DS_Store
 q.weights
-
+node_modules
 
