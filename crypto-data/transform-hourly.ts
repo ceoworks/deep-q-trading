@@ -16,7 +16,7 @@ function convertTimestamp(timestamp: number): string {
     const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Jan is 0, so +1 for correct month numbering
     const day = date.getDate().toString().padStart(2, '0');
 
-    return `${day}/${month}/${year}`;
+    return `${month}/${day}/${year}`;
 }
 function convertTimestampToTime(timestamp: number): string {
     // Divide by 1000 to convert milliseconds to seconds

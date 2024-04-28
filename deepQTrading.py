@@ -267,7 +267,7 @@ class DeepQTrading:
                     #Reset the training environment
                     trainEnv.resetEnv()
                     #Train the agent
-                    self.agent.fit(trainEnv,nb_steps=floor(self.trainSize.days-self.trainSize.days*0.2),visualize=False,verbose=0)
+                    self.agent.fit(trainEnv,nb_steps=floor(self.trainSize.days-self.trainSize.days*0.2),visualize=False,verbose=1)
                     #Get the info from the train callback
                     (_,trainCoverage,trainAccuracy,trainReward,trainLongPerc,trainShortPerc,trainLongAcc,trainShortAcc,trainLongPrec,trainShortPrec)=self.trainer.getInfo()
                     #Print Callback values on the screen
