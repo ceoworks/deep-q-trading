@@ -30,7 +30,7 @@ import datetime
 
 
 #Prefix of the name of the market (S&P500) files used to load the data
-MK="dax"
+MK="btc"
 
 class DeepQTrading:
     #Class constructor

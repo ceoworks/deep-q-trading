@@ -16,7 +16,7 @@ from mergedDataStructure import MergedDataStructure
 import callback
 
 #This is the prefix of the files that will be opened. It is related to the s&p500 stock market datasets
-MK = "dax"
+MK = "btc"
 
 
 class SpEnv(gym.Env):

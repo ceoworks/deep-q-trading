@@ -1,6 +1,6 @@
 //@ts-ignore
 import fs from 'fs'; // File system access
-import dataImported from './btc-weekly.json'; // Sample JSON data
+import dataImported from './btc-daily.json'; // Sample JSON data
 
 // Sample JSON data
 const data: (string | number)[][] = dataImported;
@@ -9,10 +9,14 @@ const data: (string | number)[][] = dataImported;
 const columns: string[] = ['Date', 'Time', 'Open', 'High', 'Low', 'Close'];
 
 function convertTimestamp(timestamp: number): string {
-    //@ts-ignore
-    console.log('timestamp:', timestamp);
-    // Divide by 1000 to convert milliseconds to seconds
-    return new Date(timestamp).toISOString().slice(0, 10); // YYYY-MM-DD
+    // Divide by 1000 to convert milliseconds to seconds (assuming milliseconds)
+    const date = new Date(timestamp);
+
+    const year = date.getFullYear().toString().padStart(4, '0'); // Add leading zeros if needed
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Jan is 0, so +1 for correct month numbering
+    const day = date.getDate().toString().padStart(2, '0');
+
+    return `${day}/${month}/${year}`;
 }
 
 // Create CSV file
@@ -25,7 +29,7 @@ const csvContent = data
     .join('\n');
 
 fs.writeFileSync(
-    './crypto-data/btc-weekly.csv',
+    './crypto-data/btcDay.csv',
     `${columns.join(',')}\n${csvContent}`
 );
 
