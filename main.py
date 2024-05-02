@@ -80,13 +80,13 @@ model.add(Activation('linear'))
 #nOutput:number of walks
 dqt = DeepQTrading(
     model=model,
-    explorations=[(0.2,100)],
-    trainSize=datetime.timedelta(days=360),
-    validationSize=datetime.timedelta(days=36),
-    testSize=datetime.timedelta(days=36),
+    explorations=[(0.2,30)],
+    trainSize=datetime.timedelta(days=1500),
+    validationSize=datetime.timedelta(days=150),
+    testSize=datetime.timedelta(days=150),
     outputFile="./Output/csv/walks/walks",
-    begin=datetime.datetime(2017,8,17,0,0,0,0),
-    end=datetime.datetime(2024,4,24,0,0,0,0),
+    begin=datetime.datetime(2017,10,26,0,0,0,0),
+    end=datetime.datetime(2024,4,28,0,0,0,0),
     nbActions=nb_actions,
     isOnlyShort=isOnlyShort,
     ensembleFolderName=sys.argv[3]

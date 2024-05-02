@@ -159,20 +159,15 @@ class SpEnv(gym.Env):
         if(self.output):
             self.ensamble.at[self.history[self.currentObservation]['Date'],self.columnName]=action
         
-        
-        
         #Return the state, reward and if its done or not
         return self.getObservation(self.history[self.currentObservation]['Date']), self.reward, self.done, {}
         
     #function done when the episode finishes
     #reset will prepare the next state (feature vector) and give it to the agent
     def reset(self):
-
         if(self.currentObservation<self.observationWindow):
             self.currentObservation=self.observationWindow
 
-
-        
         self.episode+=1
         
         
@@ -216,8 +211,6 @@ class SpEnv(gym.Env):
         #The percentage of growing or decreasing is calculated as CloseMinusOpen
         #This is the input vector
         # closeMinusOpen=list(map(lambda x: (x["Close"]-x["Open"])/x["Open"],self.history[self.currentObservation-self.observationWindow:self.currentObservation]  + self.dayData.get(date) + self.weekData.get(date)))
-        
-        
         #The state is prepared by the environment, which is simply the feature vector
         return  numpy.array(
             [list(
