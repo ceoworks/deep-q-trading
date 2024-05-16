@@ -32,6 +32,8 @@ def ensemble(numWalks,perc,type,numDel):
     negSum=0
     covSum=0
     numSum=0
+    diffSum=0
+    openVarSum=0
 
     values=[]
     #output=open("daxValidDel9th60.csv","w+")
@@ -58,6 +60,9 @@ def ensemble(numWalks,perc,type,numDel):
         neg=0
         doll=0
         cov=0
+        diff=0
+        openVar=0
+
         for date, i in df.iterrows():
             num+=1
 
