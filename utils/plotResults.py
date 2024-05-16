@@ -16,7 +16,7 @@ numFiles=int(sys.argv[2])
 xticksStep=5
 plt.figure(figsize=((numEpochs/10)*(numFiles+1),numPlots*5)) 
 for i in range(1,numFiles+1):
-    document = pd.read_csv("./Output/csv/walks/walks"+str(i)+".csv")
+    document = pd.read_csv("./Output/csv/walks/walks-btcEnsemble3"+str(i)+".csv")
     plt.subplot(numPlots,numFiles,0*numFiles + i )
     #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'testAccuracy'].tolist(),'r',label='Test')
     plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainAccuracy'].tolist(),'b',label='Train')
@@ -182,14 +182,14 @@ for i in range(1,numFiles+1):
     plt.title('Short Precision')
 
 
-plt.suptitle("Esperimento DAX Day (Only long):\n"
+plt.suptitle("Esperimento BTC Day (Only long):\n"
             +"Target model update: 1e-1\n"
             +"Model: 35 neurons single layer\n"
             +"Memory-Window Length: 10000-1\n"
-            +"Train length: 5 Years\n"
-            +"Validation length: 6 Months\n"
-            +"Test lenght: 6 Months\n"
-            +"Starting period: 2010-01-01\n"
+            +"Train length: 1100 Days\n"
+            +"Validation length: 110 days\n"
+            +"Test lenght: 110 Days\n"
+            +"Starting period: 2017-10-26\n"
             +"Other changes: Does only Long actions"
             ,size=30
             ,weight=3

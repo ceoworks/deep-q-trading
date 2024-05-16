@@ -37,10 +37,10 @@ def ensemble(numWalks,perc,type,numDel):
     #output=open("daxValidDel9th60.csv","w+")
     #output.write("Iteration,Reward%,#Wins,#Losses,Euro,Coverage,Accuracy\n")
     columns = ["Iteration","Reward%","#Wins","#Losses","Dollars","Coverage","Accuracy"]
-    dax=pd.read_csv("./datasets/sp500Day.csv",index_col='Date')
+    dax=pd.read_csv("./datasets/btcDay.csv",index_col='Date')
     for j in range(0,numWalks):
 
-        df=pd.read_csv("./Output/ensemble/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
+        df=pd.read_csv("./Output/ensemble/btcEnsemble3/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
 
 
 
