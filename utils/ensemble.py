@@ -40,7 +40,7 @@ def ensemble(numWalks,perc,type,numDel):
     dax=pd.read_csv("./datasets/btcDay.csv",index_col='Date')
     for j in range(0,numWalks):
 
-        df=pd.read_csv("./Output/ensemble/btcEnsemble/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
+        df=pd.read_csv("./Output/ensemble/btcEnsemble3/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
 
 
 
@@ -67,7 +67,9 @@ def ensemble(numWalks,perc,type,numDel):
                     
                     neg+= 0 if (dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open'] > 0 else 1
                     rew+=(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open']
-                    doll+=(dax.at[date,'Close']-dax.at[date,'Open'])*50
+                    doll+=(dax.at[date,'Close']-dax.at[date,'Open'])
+                    diff+=(dax.at[date,'Close']-dax.at[date,'Open'])
+                    openVar = dax.at[date,'Open']
                     cov+=1
                 elif (i['ensemble']==2):
                     
@@ -75,9 +77,9 @@ def ensemble(numWalks,perc,type,numDel):
                     pos+= 1 if -(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open'] > 0 else 0
                     rew+=-(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open']
                     cov+=1
-                    doll+=-(dax.at[date,'Close']-dax.at[date,'Open'])*50
+                    doll+=-(dax.at[date,'Close']-dax.at[date,'Open'])
         
-        values.append([str(round(j,2)),str(round(rew,2)),str(round(pos,2)),str(round(neg,2)),str(round(doll,2)),str(round(cov/num,2)),(str(round(pos/cov,2)) if (cov>0) else "")])
+        values.append([str(round(j,2)),str(round(diff/openVar,2)),str(round(pos,2)),str(round(neg,2)),str(round(doll,2)),str(round(cov/num,2)),(str(round(pos/cov,2)) if (cov>0) else "")])
         
         dollSum+=doll
         rewSum+=rew
@@ -85,9 +87,11 @@ def ensemble(numWalks,perc,type,numDel):
         negSum+=neg
         covSum+=cov
         numSum+=num
+        diffSum+=diff
+        openVarSum+=openVar
 
 
-    values.append(["sum",str(round(rewSum,2)),str(round(posSum,2)),str(round(negSum,2)),str(round(dollSum,2)),str(round(covSum/numSum,2)),(str(round(posSum/covSum,2)) if (covSum>0) else "")])
+    values.append(["sum",str(round(diffSum/openVarSum,2)),str(round(posSum,2)),str(round(negSum,2)),str(round(dollSum,2)),str(round(covSum/numSum,2)),(str(round(posSum/covSum,2)) if (covSum>0) else "")])
     return values,columns
 
 
@@ -118,7 +122,7 @@ def evaluate(csvname=""):
                 
                 neg+= 0 if (dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open'] > 0 else 1
                 rew+=(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open']
-                doll+=(dax.at[date,'Close']-dax.at[date,'Open'])*50
+                doll+=(dax.at[date,'Close']-dax.at[date,'Open'])
                 cov+=1
             elif (i['ensemble']==-1):
                 
@@ -126,7 +130,7 @@ def evaluate(csvname=""):
                 pos+= 1 if -(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open'] > 0 else 0
                 rew+=-(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open']
                 cov+=1
-                doll+=-(dax.at[date,'Close']-dax.at[date,'Open'])*50
+                doll+=-(dax.at[date,'Close']-dax.at[date,'Open'])
     
     output.write(str(0)+ "," + str(round(rew,2))+ "," + str(round(pos,2))+ "," + str(round(neg,2))+ "," + str(round(doll,2))+ "," + str(round(cov/num,2))+ "," +(str(round(pos/cov,2)) if (cov>0) else "") + "\n")
 
