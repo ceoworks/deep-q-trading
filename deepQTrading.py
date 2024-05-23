@@ -60,7 +60,7 @@ class DeepQTrading:
         self.model=model
 
         #Define the memory
-        self.memory = SequentialMemory(limit=10000, window_length=1)
+        self.memory = SequentialMemory(limit=2000, window_length=1)
 
         #Instantiate the agent with parameters received
         self.agent = DQNAgent(model=self.model, policy=self.policy,  nb_actions=self.nbActions, memory=self.memory, nb_steps_warmup=200, target_model_update=1e-1,
