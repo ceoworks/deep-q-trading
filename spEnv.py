@@ -138,9 +138,13 @@ class SpEnv(gym.Env):
         #If action is a long, calculate the reward 
         if(action == 1):
             #The reward must be subtracted by the cost of transaction
+            # if (self.possibleGain < -0.05):
+            #     self.possibleGain = -0.05
             self.reward = self.possibleGain-self.operationCost
         #If action is a short, calculate the reward     
         elif(action==2):
+            # if (self.possibleGain > 0.05):
+            #     self.possibleGain = 0.05
             self.reward = (-self.possibleGain)-self.operationCost
         #If action is a hold, no reward     
         else:

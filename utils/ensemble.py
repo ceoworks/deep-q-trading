@@ -42,7 +42,7 @@ def ensemble(numWalks,perc,type,numDel):
     dax=pd.read_csv("./datasets/btcDay.csv",index_col='Date')
     for j in range(0,numWalks):
 
-        df=pd.read_csv("./Output/ensemble/btcEnsemble4/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
+        df=pd.read_csv("./Output/ensemble/btcEnsemble8/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
 
 
 
@@ -62,6 +62,9 @@ def ensemble(numWalks,perc,type,numDel):
         cov=0
         diff=0
         openVar=0
+        percentage=0
+        stopLoss=-0.05
+        actualDiff=0
 
         for date, i in df.iterrows():
             num+=1
@@ -69,11 +72,15 @@ def ensemble(numWalks,perc,type,numDel):
             if date in dax.index:
                 if (i['ensemble']==1):
                     pos+= 1 if (dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open'] > 0 else 0
-                    
                     neg+= 0 if (dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open'] > 0 else 1
+
+                    percentage = (dax.at[date,'Low']-dax.at[date,'Open'])/dax.at[date,'Open']
+                    actualDiff = (dax.at[date,'Close']-dax.at[date,'Open'])
+                    if (percentage<stopLoss):
+                        actualDiff = dax.at[date,'Open'] * stopLoss
+                    diff+=actualDiff
                     rew+=(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open']
                     doll+=(dax.at[date,'Close']-dax.at[date,'Open'])
-                    diff+=(dax.at[date,'Close']-dax.at[date,'Open'])
                     openVar = dax.at[date,'Open']
                     cov+=1
                 elif (i['ensemble']==2):
