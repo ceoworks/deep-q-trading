@@ -34,6 +34,8 @@ def ensemble(numWalks,perc,type,numDel):
     numSum=0
     diffSum=0
     openVarSum=0
+    maxDrawdown=0
+    maxProfit=0
 
     values=[]
     #output=open("daxValidDel9th60.csv","w+")
@@ -42,7 +44,7 @@ def ensemble(numWalks,perc,type,numDel):
     dax=pd.read_csv("./datasets/btcDay.csv",index_col='Date')
     for j in range(0,numWalks):
 
-        df=pd.read_csv("./Output/ensemble/btcEnsemble8/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
+        df=pd.read_csv("./Output/ensemble/btcEnsemble5/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
 
 
 
@@ -76,8 +78,8 @@ def ensemble(numWalks,perc,type,numDel):
 
                     percentage = (dax.at[date,'Low']-dax.at[date,'Open'])/dax.at[date,'Open']
                     actualDiff = (dax.at[date,'Close']-dax.at[date,'Open'])
-                    if (percentage<stopLoss):
-                        actualDiff = dax.at[date,'Open'] * stopLoss
+                    # if (percentage<stopLoss):
+                    #     actualDiff = dax.at[date,'Open'] * stopLoss
                     diff+=actualDiff
                     rew+=(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open']
                     doll+=(dax.at[date,'Close']-dax.at[date,'Open'])
@@ -88,9 +90,18 @@ def ensemble(numWalks,perc,type,numDel):
                     neg+= 0 if -(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open'] > 0 else 1
                     pos+= 1 if -(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open'] > 0 else 0
                     rew+=-(dax.at[date,'Close']-dax.at[date,'Open'])/dax.at[date,'Open']
+                    actualDiff = -(dax.at[date,'Close']-dax.at[date,'Open'])
+                    diff+=actualDiff
+                    openVar = dax.at[date,'Open']
+
                     cov+=1
                     doll+=-(dax.at[date,'Close']-dax.at[date,'Open'])
         
+            if maxDrawdown > doll:
+                maxDrawdown = doll
+            if maxProfit < doll:
+                maxProfit = doll
+
         values.append([str(round(j,2)),str(round(diff/openVar,2)),str(round(pos,2)),str(round(neg,2)),str(round(doll,2)),str(round(cov/num,2)),(str(round(pos/cov,2)) if (cov>0) else "")])
         
         dollSum+=doll
@@ -102,7 +113,16 @@ def ensemble(numWalks,perc,type,numDel):
         diffSum+=diff
         openVarSum+=openVar
 
+        if maxDrawdown > dollSum:
+            maxDrawdown = dollSum
+        if maxProfit < dollSum:
+            maxProfit = dollSum
 
+    if type == "test":
+        print("maxDrawdown:")
+        print(maxDrawdown)
+        print("maxProfit:")
+        print(maxProfit)
     values.append(["sum",str(round(diffSum/openVarSum,2)),str(round(posSum,2)),str(round(negSum,2)),str(round(dollSum,2)),str(round(covSum/numSum,2)),(str(round(posSum/covSum,2)) if (covSum>0) else "")])
     return values,columns
 

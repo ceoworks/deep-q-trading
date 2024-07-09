@@ -40,7 +40,7 @@ def ensemble(numWalks,perc,type,numDel):
     dax=pd.read_csv("./datasets/btcDay.csv",index_col='Date')
     for j in range(0,numWalks):
 
-        df=pd.read_csv("./Output/ensemble/btcEnsemble8/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
+        df=pd.read_csv("./Output/ensemble/btcEnsemble10/walk"+str(j)+"ensemble_"+type+".csv",index_col='Date')
 
 
 

@@ -16,7 +16,7 @@ numFiles=int(sys.argv[2])
 xticksStep=5
 plt.figure(figsize=((numEpochs/10)*(numFiles+1),numPlots*5)) 
 for i in range(1,numFiles+1):
-    document = pd.read_csv("./Output/csv/walks-btcEnsemble8/walks"+str(i)+".csv")
+    document = pd.read_csv("./Output/csv/walks-btcEnsemble10/walks"+str(i)+".csv")
     plt.subplot(numPlots,numFiles,0*numFiles + i )
     #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'testAccuracy'].tolist(),'r',label='Test')
     plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainAccuracy'].tolist(),'b',label='Train')
