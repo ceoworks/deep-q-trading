@@ -16,7 +16,7 @@ numFiles=int(sys.argv[2])
 xticksStep=5
 plt.figure(figsize=((numEpochs/10)*(numFiles+1),numPlots*5)) 
 for i in range(1,numFiles+1):
-    document = pd.read_csv("./Output/csv/walks-btcEnsemble10/walks"+str(i)+".csv")
+    document = pd.read_csv("./Output/csv/walks-btcEnsemble4/walks"+str(i)+".csv")
     plt.subplot(numPlots,numFiles,0*numFiles + i )
     #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'testAccuracy'].tolist(),'r',label='Test')
     plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainAccuracy'].tolist(),'b',label='Train')
@@ -83,23 +83,23 @@ for i in range(1,numFiles+1):
     plt.title('Long %')
     
 
+    # plt.subplot(numPlots,numFiles,5*numFiles + i )
+
+    # plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainShort%'].tolist(),'b',label='Train')
+    # plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationShort%'].tolist(),'g',label='Validation')
+    # #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationShort%'].tolist(),'r',label='Test')
+    
+    # plt.xticks(range(0,numEpochs,4))
+
+    # plt.yticks(np.arange(0, 1, step=0.1))
+    # plt.ylim(-0.05,1.05)
+    # plt.axhline(y=0, color='k', linestyle='-')
+    # plt.legend()
+    # plt.grid()
+    # plt.title('Short %')
+    
+
     plt.subplot(numPlots,numFiles,5*numFiles + i )
-
-    plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainShort%'].tolist(),'b',label='Train')
-    plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationShort%'].tolist(),'g',label='Validation')
-    #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationShort%'].tolist(),'r',label='Test')
-    
-    plt.xticks(range(0,numEpochs,4))
-
-    plt.yticks(np.arange(0, 1, step=0.1))
-    plt.ylim(-0.05,1.05)
-    plt.axhline(y=0, color='k', linestyle='-')
-    plt.legend()
-    plt.grid()
-    plt.title('Short %')
-    
-
-    plt.subplot(numPlots,numFiles,6*numFiles + i )
 
     #plt.plot(document.ix[:, 'Iteration'].tolist(),list(map(lambda x: 1-x,document.ix[:, 'testCoverage'].tolist())),'r',label='Test')
     plt.plot(document.ix[:, 'Iteration'].tolist(),list(map(lambda x: 1-x,document.ix[:, 'trainCoverage'].tolist())),'b',label='Train')
@@ -112,10 +112,10 @@ for i in range(1,numFiles+1):
     plt.axhline(y=0, color='k', linestyle='-')
     plt.legend()
     plt.grid()
-    plt.title('Hold %')
+    plt.title('Opt out %')
     
 
-    plt.subplot(numPlots,numFiles,7*numFiles + i )
+    plt.subplot(numPlots,numFiles,6*numFiles + i )
 
     plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainLongAcc'].tolist(),'b',label='Train')
     plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationLongAcc'].tolist(),'g',label='Validation')
@@ -132,24 +132,24 @@ for i in range(1,numFiles+1):
 
     
 
-    plt.subplot(numPlots,numFiles,8*numFiles + i )
+    # plt.subplot(numPlots,numFiles,8*numFiles + i )
 
-    plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainShortAcc'].tolist(),'b',label='Train')
-    plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationShortAcc'].tolist(),'g',label='Validation')
-    #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationShortAcc'].tolist(),'r',label='Test')
+    # plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainShortAcc'].tolist(),'b',label='Train')
+    # plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationShortAcc'].tolist(),'g',label='Validation')
+    # #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validationShortAcc'].tolist(),'r',label='Test')
     
-    plt.xticks(range(0,numEpochs,4))
+    # plt.xticks(range(0,numEpochs,4))
     
-    plt.yticks(np.arange(0, 1, step=0.1))
-    plt.ylim(-0.05,1.05)
-    plt.axhline(y=0, color='k', linestyle='-')
-    plt.legend()
-    plt.grid()
-    plt.title('Short Accuracy')
+    # plt.yticks(np.arange(0, 1, step=0.1))
+    # plt.ylim(-0.05,1.05)
+    # plt.axhline(y=0, color='k', linestyle='-')
+    # plt.legend()
+    # plt.grid()
+    # plt.title('Short Accuracy')
 
     
 
-    plt.subplot(numPlots,numFiles,9*numFiles + i )
+    plt.subplot(numPlots,numFiles,7*numFiles + i )
 
     plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainLongPrec'].tolist(),'b',label='Train')
     plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validLongPrec'].tolist(),'g',label='Validation')
@@ -166,29 +166,29 @@ for i in range(1,numFiles+1):
 
     
 
-    plt.subplot(numPlots,numFiles,10*numFiles + i )
+    # plt.subplot(numPlots,numFiles,10*numFiles + i )
 
-    plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainShortPrec'].tolist(),'b',label='Train')
-    plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validShortPrec'].tolist(),'g',label='Validation')
-    #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validShortPrec'].tolist(),'r',label='Test')
+    # plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'trainShortPrec'].tolist(),'b',label='Train')
+    # plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validShortPrec'].tolist(),'g',label='Validation')
+    # #plt.plot(document.ix[:, 'Iteration'].tolist(),document.ix[:, 'validShortPrec'].tolist(),'r',label='Test')
     
-    plt.xticks(range(0,numEpochs,4))
+    # plt.xticks(range(0,numEpochs,4))
     
-    plt.yticks(np.arange(0, 1, step=0.1))
-    plt.ylim(-0.05,1.05)
-    plt.axhline(y=0, color='k', linestyle='-')
-    plt.legend()
-    plt.grid()
-    plt.title('Short Precision')
+    # plt.yticks(np.arange(0, 1, step=0.1))
+    # plt.ylim(-0.05,1.05)
+    # plt.axhline(y=0, color='k', linestyle='-')
+    # plt.legend()
+    # plt.grid()
+    # plt.title('Short Precision')
 
 
-plt.suptitle("Esperimento BTC Day (Only long):\n"
+plt.suptitle("Esperiment BTC Day (Only long):\n"
             +"Target model update: 1e-1\n"
-            +"Model: 35 neurons single layer\n"
+            +"Model: 3-layered Deep Neural Network\n"
             +"Memory-Window Length: 10000-1\n"
-            +"Train length: 1100 Days\n"
-            +"Validation length: 110 days\n"
-            +"Test lenght: 110 Days\n"
+            +"Train length: 1300 Days\n"
+            +"Validation length: 130 days\n"
+            +"Test lenght: 130 Days\n"
             +"Starting period: 2017-10-26\n"
             +"Other changes: Does only Long actions"
             ,size=30

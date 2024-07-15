@@ -267,7 +267,7 @@ class DeepQTrading:
                     #Reset the training environment
                     trainEnv.resetEnv()
                     #Train the agent
-                    self.agent.fit(trainEnv,nb_steps=floor(self.trainSize.days-self.trainSize.days*0.2),visualize=False,verbose=1)
+                    self.agent.fit(trainEnv,nb_steps=floor(self.trainSize.days),visualize=False,verbose=1)
                     #Get the info from the train callback
                     (_,trainCoverage,trainAccuracy,trainReward,trainLongPerc,trainShortPerc,trainLongAcc,trainShortAcc,trainLongPrec,trainShortPrec)=self.trainer.getInfo()
                     #Print Callback values on the screen
@@ -276,7 +276,7 @@ class DeepQTrading:
                     #Reset the validation environment
                     validEnv.resetEnv()
                     #Test the agent on validation data
-                    self.agent.test(validEnv,nb_episodes=floor(self.validationSize.days-self.validationSize.days*0.2),visualize=False,verbose=0)
+                    self.agent.test(validEnv,nb_episodes=floor(self.validationSize.days),visualize=False,verbose=0)
                     #Get the info from the validation callback
                     (_,validCoverage,validAccuracy,validReward,validLongPerc,validShortPerc,validLongAcc,validShortAcc,validLongPrec,validShortPrec)=self.validator.getInfo()
                     #Print callback values on the screen
@@ -285,7 +285,7 @@ class DeepQTrading:
                     #Reset the testing environment
                     testEnv.resetEnv()
                     #Test the agent on testing data
-                    self.agent.test(testEnv,nb_episodes=floor(self.validationSize.days-self.validationSize.days*0.2),visualize=False,verbose=0)
+                    self.agent.test(testEnv,nb_episodes=floor(self.validationSize.days),visualize=False,verbose=0)
                     #Get the info from the testing callback
                     (_,testCoverage,testAccuracy,testReward,testLongPerc,testShortPerc,testLongAcc,testShortAcc,testLongPrec,testShortPrec)=self.tester.getInfo()
                     #Print callback values on the screen
