@@ -1,5 +1,4 @@
 # Don't track content of these folders
-Output/
 
 
 # Don't track this files #
@@ -19,7 +18,6 @@ telegramSettings.py
 
 # Documents #
 #############
-*.pdf
 *.xlsx
 
 # Packages #
@@ -35,4 +33,7 @@ telegramSettings.py
 *.tar
 *.zip
 
+.DS_Store
+q.weights
+node_modules
 
